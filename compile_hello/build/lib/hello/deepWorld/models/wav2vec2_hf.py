@@ -20,7 +20,8 @@ BASE_TRAINING_ARGUMENTS=\
     "per_device_eval_batch_size":32,
     "logging_strategy":"steps",
     "logging_steps":10,
-    "save_total_limit":2
+    "save_total_limit":2,
+    "datalaoder_num_worker":2
 }
 
 
