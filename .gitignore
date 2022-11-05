@@ -1,0 +1,13 @@
+data/*
+miscellanea/*
+commonvoices/*
+minds14_hf/*
+encoded_minds14_hf/*
+
+deep_experiments/*
+data_experiments/*
+
+*.wav
+*.png
+*.pyc
+
