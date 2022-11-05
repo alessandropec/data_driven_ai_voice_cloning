@@ -1,0 +1,15 @@
+{
+	"dataset_name": "pangram",
+	"data_dir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/data/data_flat/sp_img_dataset_mq_trim25_nftt8800_w128_h128",
+	"pretrained": false,
+	"scheduler": true,
+	"model": "spvgg v1.0",
+	"batch_size": 8,
+	"num_workers": 4,
+	"epochs": 100,
+	"auto_lr": 0.0007220809018385464,
+	"lr": 0.0007220809018385464,
+    "weight_decay": 1e-3,
+    "checkpoint_dir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/deep_experiments/runs/models_ckpt/spvgg11_bn_pretrained_v1.0",
+	"logdir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/deep_experiments/runs/models_log/spvgg11_bn_pretrained_v1.0"
+}

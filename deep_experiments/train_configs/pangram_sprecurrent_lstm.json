@@ -1,0 +1,22 @@
+{    
+	"input_size": 1025,
+	"num_layers": 2,
+	"hidden_size": 256,
+	"embedding_size":128,
+	"num_classes": 8,
+	"bidir":false,
+	"dropout": 0.5,
+	"model_type": "LSTM",
+	"dataset_name": "pangram",
+	"data_dir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/data/data_flat/sp_audio_dataset_mq_trim25",
+	"pretrained": false,
+	"scheduler": true,
+	"model": "sprecurrent_lstm v1.0",
+	"batch_size": 8,
+	"num_workers": 4,
+	"epochs": 100,
+	"lr": 1e-3,
+    "weight_decay": 1e-3,
+    "checkpoint_dir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/deep_experiments/runs/models_ckpt/splstm",
+	"logdir": "C:/Users/emman/Desktop/Tesi/AI voice cloning/codice/data_driven_ai_voice_cloning/deep_experiments/runs/models_log/splstm"
+}

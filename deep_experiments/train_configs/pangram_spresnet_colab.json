@@ -1,0 +1,14 @@
+{
+	"dataset_name": "pangram8",
+	"data_dir": "/content/drive/MyDrive/LM_DSE/TTS_sys/data_flat/sp_img_dataset_mq_trim25_nftt8800_w128_h128",
+	"pretrained": true,
+	"scheduler": true,
+	"model": "sresnet v1.0",
+	"batch_size": 8,
+	"num_workers": 4,
+	"epochs": 10,
+	"lr": 1e-4,
+  "weight_decay": 1e-3,
+  "checkpoint_dir": "/content/drive/MyDrive/LM_DSE/TTS_sys/runs/models_ckpt/spresnet_",
+	"logdir": "/content/drive/MyDrive/LM_DSE/TTS_sys/runs/models_log/spresnet_"
+}
