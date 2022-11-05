@@ -7,6 +7,8 @@ encoded_minds14_hf/*
 #deep_experiments/*
 #data_experiments/*
 
+results/*
+
 *.wav
 *.png
 *.pyc
