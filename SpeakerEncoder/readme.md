@@ -48,9 +48,9 @@ python create_speaker_emb_dataset.py --model_name ecapa --dataset_name VCTK --da
 ```
 
 1. **model_name**: **ecapa**, **wavlm-base-plus-sv**, **wavlm-large**, wavlm-base, wavlm-base-sv
-  Specify one of the above name to start from pretraining model or specify one of the above name and the checkpoint to use your trained model
+>Specify one of the above name to start from pretraining model or specify one of the above name and the checkpoint to use your trained model
 2. **dataset_name**: VCTK, LibriTTS
-  Specify the file system structure of your dataset
+>Specify the file system structure of your dataset
 3. **dataset_dir**: the root path of the data
 4. **model_device**: the creation can be run both on cpu or cuda
 5. **checkpoint**: path to your checkpoint, pay attention to align the model name (mdoel architecture) with the right checkpoint (model weight)
