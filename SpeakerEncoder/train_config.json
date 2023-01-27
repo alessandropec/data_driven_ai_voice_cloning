@@ -1,0 +1,54 @@
+{
+    "model_name":"wavlm-base-plus-sv",
+    "run_id":"wavlm-base-plus-sv_pand_validation", 
+    "train_data_root":"../datasets/61pangram8sp_ita/train",
+    "val_data_root":"../datasets/61pangram8sp_ita/val",
+    "multi_rec_session":false,
+    "model_sample_rate":16000,
+    "window_size_s":2,
+
+    "num_epochs":100,
+
+    "comet_key":"hSDgWqHrbRamCY7S2jpQE5kIu",
+    "comet_project":"speaker-verification",
+
+    "vis_train_art_every":5,
+    "vis_train_metrics_every":1, 
+    "val_every":25,
+    "vis_val_art_every":5,
+    "val_max_epochs":1,
+    "backup_every":50, 
+    "save_every":25,
+
+    "scheduler_factor":0.6,
+    "scheduler_patience":3,
+    "weight_decay":0,
+
+    "force_restart":true,
+    "device":"cpu",
+    "aug_device":"cpu",
+    "num_workers":2,
+    "speakers_per_batch":6,
+    "utterances_per_speaker":8,
+    "learning_rate_init":1e-6,
+    "val_speakers_per_batch":4,
+    "val_utterances_per_speaker":8,
+    "activation_function":null,
+
+    "use_data_augmentation":true,
+    "augment_noises_paths":["../datasets/augmentation_dataset/noise/free-sound/",
+                        "../datasets/augmentation_dataset/noise/free-sound/"],
+
+    "augment_musics_paths":["../datasets/augmentation_dataset/music/fma-western-art/",
+                            "../datasets/augmentation_dataset/music/fma/",
+                            "../datasets/augmentation_dataset/music/hd-classical/",
+                            "../datasets/augmentation_dataset/music/jamendo/",
+                            "../datasets/augmentation_dataset/music/rfm/"                                                               
+                        ],
+
+    "augment_reverbs_paths":["../datasets/augmentation_dataset/reverb/"],
+    
+    "data_parallel":[0,1,2,3],
+
+    "annote_point":false
+}
