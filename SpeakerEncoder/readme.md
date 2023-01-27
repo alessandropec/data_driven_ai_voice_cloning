@@ -55,7 +55,7 @@ python create_speaker_emb_dataset.py --model_name ecapa --dataset_name VCTK --da
 4. **model_device**: the creation can be run both on cpu or cuda
 5. **checkpoint**: path to your checkpoint, pay attention to align the model name (mdoel architecture) with the right checkpoint (model weight)
 
-The script create for each audio in the dataset the corresponding embedding in the folder where is the audio, and for each speaker the averaged embedding in the folder of the speaker, the names of the embedding file are the following:
+The script create for each audio in the dataset the corresponding embedding in the folder where the audio is already located, moreover for each speaker the averaged embedding is computed and stored in the folder of the speaker. The names of the embedding file are the following:
 ``` audioName.modelName_embedding``` for single audio embedding and ```speakerName.modelName_averaged_embedding ``` for speaker averaged embedding
 you can find some example [here](https://github.com/alessandropec/data_driven_ai_voice_cloning/tree/master/ZeroShotFastSpeech2/datasets/LibriTTS/8887).
 
