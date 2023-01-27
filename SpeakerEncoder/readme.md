@@ -14,7 +14,7 @@ All parameters are inside speaker train_config.json, set it and run:
 ```
 python train_encoder.py --config=train_config.json
 ```
-### Non obvious parameters in train_config.json
+#### Non obvious parameters in train_config.json
 
 1. **model_name**: **ecapa**, **wavlm-base-plus-sv**, **wavlm-large**, wavlm-base, wavlm-base-sv.
 2. **run_id**: name of the run on comet.
@@ -35,7 +35,7 @@ python train_encoder.py --config=train_config.json
 
 
 
-## Embedding generation
+## Speaker embedding creation
 
 To generate embedding for VCTK or LIbriTTS dataset (or in general for any dataset that follow VCTK or LibriTTS file system structure), you can run
 
