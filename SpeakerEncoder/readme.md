@@ -59,5 +59,9 @@ The script create for each audio in the dataset the corresponding embedding, in 
 ``` audioName.modelName_embedding``` for single audio embedding and ```speakerName.modelName_averaged_embedding ``` for speaker averaged embedding
 you can find some example [here](https://github.com/alessandropec/data_driven_ai_voice_cloning/tree/master/ZeroShotFastSpeech2/datasets/LibriTTS/8887).
 
-## Umap of some speaker embeddings from VoxCeleb 1 with ECAPA-TDNN
+#Results on VoxCeleb1
+
+### Umap of some speaker embeddings from VoxCeleb 1 with ECAPA-TDNN
 ![umap of speakers from VoxCeleb1](https://github.com/alessandropec/data_driven_ai_voice_cloning/blob/master/SpeakerEncoder/vox1_umap_example.png)
+
+
