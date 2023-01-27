@@ -3,10 +3,13 @@
 This folder contain all stuff to train different speaker verification model with the [Generalized end-to-end loss](https://arxiv.org/pdf/1710.10467.pdf)
 The code provide a wrapper that use the GE2E loss for all model proposed that are pretrained from Hugging Face and are:
 
-![umap of speakers from VoxCeleb1](https://github.com/alessandropec/data_driven_ai_voice_cloning/blob/master/SpeakerEncoder/vox1_umap_example.png)
+
 
 1. [SpeechBrain ECAPA-TDNN](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb)
 2. [WAVLM-series](https://huggingface.co/spaces/microsoft/wavlm-speaker-verification)
+
+## Umap of some speaker embeddings from VoxCeleb 1 with ECAPA-TDNN
+![umap of speakers from VoxCeleb1](https://github.com/alessandropec/data_driven_ai_voice_cloning/blob/master/SpeakerEncoder/vox1_umap_example.png)
 
 ## Training
 
