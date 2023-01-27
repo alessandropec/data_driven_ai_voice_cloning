@@ -6,11 +6,19 @@ The code provide a wrapper that use the GE2E loss for all model proposed that ar
 1. [SpeechBrain ECAPA-TDNN](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb)
 2. [WAVLM-series](https://huggingface.co/spaces/microsoft/wavlm-speaker-verification)
 
-To train the speaker encoder set the train_config.json and run:
+## Training
+
+Training log of speaker encoder is done with [CometML](https://www.comet.com/site/) you need to register on the site and get the api key.
+All parameters are inside speaker train_config.json, set it and run:
 
 ```
 python train_encoder.py --config=train_config.json
 ```
+### Non obvious parameters in train_config.json
+
+
+
+## Embedding generation
 
 To generate embedding for VCTK or LIbriTTS dataset (or in general for any dataset that follow VCTK or LibriTTS file system structure), you can run
 
