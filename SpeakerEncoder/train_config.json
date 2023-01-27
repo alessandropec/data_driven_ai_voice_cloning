@@ -1,16 +1,16 @@
 {
     "model_name":"wavlm-base-plus-sv",
-    "run_id":"wavlm-base-plus-sv_pand_validation", 
-    "train_data_root":"../datasets/61pangram8sp_ita/train",
-    "val_data_root":"../datasets/61pangram8sp_ita/val",
+    "run_id":"wavlm-base-plus-sv_run", 
+    "train_data_root":"../datasets/vc1/train",
+    "val_data_root":"../datasets/vc1/val",
     "multi_rec_session":false,
     "model_sample_rate":16000,
     "window_size_s":2,
 
     "num_epochs":100,
 
-    "comet_key":"hSDgWqHrbRamCY7S2jpQE5kIu",
-    "comet_project":"speaker-verification",
+    "comet_key":"YOUR_COMET_KEY_HERE",
+    "comet_project":"YOUR_COMET_PROJECT_NAME_HERE",
 
     "vis_train_art_every":5,
     "vis_train_metrics_every":1, 
