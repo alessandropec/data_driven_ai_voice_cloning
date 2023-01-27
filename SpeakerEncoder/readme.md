@@ -8,8 +8,7 @@ The code provide a wrapper that use the GE2E loss for all model proposed that ar
 1. [SpeechBrain ECAPA-TDNN](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb)
 2. [WAVLM-series](https://huggingface.co/spaces/microsoft/wavlm-speaker-verification)
 
-## Umap of some speaker embeddings from VoxCeleb 1 with ECAPA-TDNN
-![umap of speakers from VoxCeleb1](https://github.com/alessandropec/data_driven_ai_voice_cloning/blob/master/SpeakerEncoder/vox1_umap_example.png)
+
 
 ## Training
 
@@ -59,3 +58,6 @@ python create_speaker_emb_dataset.py --model_name ecapa --dataset_name VCTK --da
 The script create for each audio in the dataset the corresponding embedding in the folder where is the audio, and for each speaker the averaged embedding in the folder of the speaker, the names of the embedding file are the following:
 ``` audioName.modelName_embedding``` for single audio embedding and ```speakerName.modelName_averaged_embedding ``` for speaker averaged embedding
 you can find some example [here](https://github.com/alessandropec/data_driven_ai_voice_cloning/tree/master/ZeroShotFastSpeech2/datasets/LibriTTS/8887).
+
+## Umap of some speaker embeddings from VoxCeleb 1 with ECAPA-TDNN
+![umap of speakers from VoxCeleb1](https://github.com/alessandropec/data_driven_ai_voice_cloning/blob/master/SpeakerEncoder/vox1_umap_example.png)
