@@ -23,6 +23,22 @@ def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
                 model.load_state_dict(checkpoint["model_state"]),
             model.train(False)
             return model
+        
+def get_spaekr_emb(filename,speaker_model):
+    audio,sampling_rate=load_wav_to_torch(filename)
+    audio_norm=normalize(audio)
+    audio_trim = trim_silence(audio_norm,start_threshold=start_threshold,end_threshold=end_threshold)
+
+    if sampling_rate!=48000 and sampling_rate!=16000:
+    
+    
+    
+        sp_audio,sp_sr=torch.tensor(librosa.resample(audio_trim.numpy(),sampling_rate,16000)),16000
+    else:
+        sp_audio,sp_sr=audio_trim,48000
+    emb=speaker_model(sp_audio.unsqueeze(0))
+
+    return emb
 
     
 if __name__ == '__main__':
@@ -99,18 +115,7 @@ if __name__ == '__main__':
             embs=[]
             for filename in tqdm(files):
                 try:
-                    audio,sampling_rate=load_wav_to_torch(filename)
-                    audio_norm=normalize(audio)
-                    audio_trim = trim_silence(audio_norm,start_threshold=start_threshold,end_threshold=end_threshold)
-
-                    if sampling_rate!=48000 and sampling_rate!=16000:
-                    
-                    
-                    
-                        sp_audio,sp_sr=torch.tensor(librosa.resample(audio_trim.numpy(),sampling_rate,16000)),16000
-                    else:
-                        sp_audio,sp_sr=audio_trim,48000
-                    emb=speaker_model(sp_audio.unsqueeze(0))
+                    emb=get_spaekr_emb(filename,speaker_model)
 
                     emb_name=os.path.splitext(filename)[0]
                     emb_name+="."+args.model_name+"_embedding"

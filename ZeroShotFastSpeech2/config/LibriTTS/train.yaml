@@ -1,8 +1,7 @@
-
 path:
-  ckpt_path: "./output/ckpt/LibriTTS"
-  log_path: "./output/log/LibriTTS"
-  result_path: "./output/result/LibriTTS"
+  ckpt_path: "ZeroShotFastSpeech2/output/ckpt/LibriTTS"
+  log_path: "ZeroShotFastSpeech2/output/log/LibriTTS"
+  result_path: "ZeroShotFastSpeech2/output/result/LibriTTS"
 
 optimizer:
   batch_size: 2

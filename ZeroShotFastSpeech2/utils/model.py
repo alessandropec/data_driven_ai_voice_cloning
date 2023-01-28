@@ -42,6 +42,7 @@ def get_param_num(model):
 def get_vocoder(config, device):
     name = config["vocoder"]["model"]
     speaker = config["vocoder"]["speaker"]
+    voc_path=config["vocoder"]["config_path"]
 
     if name == "MelGAN":
         if speaker == "LJSpeech":
@@ -55,7 +56,7 @@ def get_vocoder(config, device):
         vocoder.mel2wav.eval()
         vocoder.mel2wav.to(device)
     elif name == "HiFi-GAN":
-        with open("hifigan/config.json", "r") as f:
+        with open(voc_path, "r") as f:
             config = json.load(f)
         config = hifigan.AttrDict(config)
         vocoder = hifigan.Generator(config)

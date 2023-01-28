@@ -34,5 +34,6 @@ multi_speaker: True
 max_seq_len: 1000
 
 vocoder:
+  config_path: "ZeroShotFastSpeech2/hifigan/config.json"
   model: "HiFi-GAN" # support 'HiFi-GAN', 'MelGAN'
   speaker: "universal" # support  'LJSpeech', 'universal'
