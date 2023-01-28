@@ -43,6 +43,7 @@ def get_vocoder(config, device):
     name = config["vocoder"]["model"]
     speaker = config["vocoder"]["speaker"]
     voc_path=config["vocoder"]["config_path"]
+    basename=os.path.split(voc_path)[0]
 
     if name == "MelGAN":
         if speaker == "LJSpeech":
@@ -61,9 +62,9 @@ def get_vocoder(config, device):
         config = hifigan.AttrDict(config)
         vocoder = hifigan.Generator(config)
         if speaker == "LJSpeech":
-            ckpt = torch.load("hifigan/generator_LJSpeech.pth.tar")
+            ckpt = torch.load(os.path.join(basename,"generator_LJSpeech.pth.tar"))
         elif speaker == "universal":
-            ckpt = torch.load("hifigan/generator_universal.pth.tar")
+            ckpt = torch.load(os.path.join(basename,"generator_universal.pth.tar"))
         vocoder.load_state_dict(ckpt["generator"])
         vocoder.eval()
         vocoder.remove_weight_norm()

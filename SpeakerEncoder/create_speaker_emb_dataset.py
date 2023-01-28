@@ -5,7 +5,7 @@ import librosa
 from tqdm import tqdm
 import os
 import glob
-from train import get_model
+from train import get_model_architecture
 
 def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
         
@@ -15,7 +15,7 @@ def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
             enlarge_head=True
         model=None
         with torch.no_grad():
-            model=get_model(model_name=model_name,device=device,enlarge_head=enlarge_head,activation_function=None,train_only_head=False)
+            model=get_model_architecture(model_name=model_name,device=device,enlarge_head=enlarge_head,activation_function=None,train_only_head=False)
 
             if ckpt_path:              
                 print("Found existing model \"%s\", loading it and resuming training." % ckpt_path)

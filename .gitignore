@@ -3,5 +3,7 @@ voicy.ipynb
 ZeroShotFastSpeech2/trained_models/*
 ZeroShotFastSpeech2/raw_data/*
 ZeroShotFastSpeech2/preprocessed_data/*
+ZeroShotFastSpeech2/output/*
 __pycache__/*
 pretrained_models/*
+ZeroShotFastSpeech2/hifigan/generator_universal.pth.tar

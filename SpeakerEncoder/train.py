@@ -3,8 +3,8 @@ from comet_ml import Experiment
 import torch
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from data_objects.speaker_verification_dataset import SpeakerVerificationDataLoader, SpeakerVerificationDataset
-from model.wavlm_speaker_encoder import WavLMSpeakerEncoder
-from model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
+from encoder_model.wavlm_speaker_encoder import WavLMSpeakerEncoder
+from encoder_model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
 
 import os
 import umap
@@ -16,7 +16,7 @@ from constants import colormap
 
 
 
-def get_model(model_name,device,activation_function,train_only_head,enlarge_head=False):
+def get_model_architecture(model_name,device,activation_function,train_only_head,enlarge_head=False):
     model=None
     if ("wavlm" in model_name) and not ("untrained" in model_name):
         pretrained_name="microsoft/"+model_name
@@ -288,7 +288,7 @@ def train_with_comet_viz(
     best_fpath=model_dir /"best_model.pt" #Best model based on validation eer and (if equal) loos
 
     # Create the model and the optimizer
-    model=get_model(model_name,device,activation_function,train_only_head=train_only_head,enlarge_head=enlarge_head)
+    model=get_model_architecture(model_name,device,activation_function,train_only_head=train_only_head,enlarge_head=enlarge_head)
     experiment.set_model_graph(model, overwrite=False)
     optimizer = None
     init_step = 1
