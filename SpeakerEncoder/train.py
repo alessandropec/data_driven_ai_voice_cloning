@@ -2,9 +2,9 @@ from pathlib import Path
 from comet_ml import Experiment
 import torch
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from .data_objects.speaker_verification_dataset import SpeakerVerificationDataLoader, SpeakerVerificationDataset
-from .model.wavlm_speaker_encoder import WavLMSpeakerEncoder
-from .model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
+from data_objects.speaker_verification_dataset import SpeakerVerificationDataLoader, SpeakerVerificationDataset
+from model.wavlm_speaker_encoder import WavLMSpeakerEncoder
+from model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
 
 import os
 import umap
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import torch_audiomentations as am
 from typing import Union
 
-from .constants import colormap
+from constants import colormap
 
 
 

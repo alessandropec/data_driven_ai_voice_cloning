@@ -3,3 +3,5 @@ voicy.ipynb
 ZeroShotFastSpeech2/trained_models/*
 ZeroShotFastSpeech2/raw_data/*
 ZeroShotFastSpeech2/preprocessed_data/*
+__pycache__/*
+pretrained_models/*

@@ -1,4 +1,4 @@
-from modules.train import train_with_comet_viz
+from train import train_with_comet_viz
 
 from pathlib import Path
 import json
