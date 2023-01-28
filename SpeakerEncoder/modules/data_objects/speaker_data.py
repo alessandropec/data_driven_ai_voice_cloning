@@ -1,6 +1,6 @@
 from pathlib import Path
-from data_objects.random_cycler import RandomCycler
-from data_objects.audio_tools import get_sig
+from .random_cycler import RandomCycler
+from .audio_tools import get_sig
 
 
 class Speaker:

@@ -1,7 +1,7 @@
 
 
-from data_objects.speaker_data import Speaker
-from data_objects.random_cycler import RandomCycler
+from .speaker_data import Speaker
+from .random_cycler import RandomCycler
 from torch.utils.data import Dataset, DataLoader
 from glob import glob
 from pathlib import Path

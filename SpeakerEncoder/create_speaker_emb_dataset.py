@@ -1,11 +1,11 @@
 import argparse
 import torch
-from data_objects.audio_tools import normalize,trim_silence,load_wav_to_torch,load_libri_tts,load_vctk
+from modules.data_objects.audio_tools import normalize,trim_silence,load_wav_to_torch,load_libri_tts,load_vctk
 import librosa
 from tqdm import tqdm
 import os
 import glob
-from train import get_model
+from modules.train import get_model
 
 def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
         
@@ -24,7 +24,7 @@ def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
             model.train(False)
             return model
         
-def get_spaekr_emb(filename,speaker_model):
+def get_speaker_emb(filename,speaker_model):
     audio,sampling_rate=load_wav_to_torch(filename)
     audio_norm=normalize(audio)
     audio_trim = trim_silence(audio_norm,start_threshold=start_threshold,end_threshold=end_threshold)
@@ -115,7 +115,7 @@ if __name__ == '__main__':
             embs=[]
             for filename in tqdm(files):
                 try:
-                    emb=get_spaekr_emb(filename,speaker_model)
+                    emb=get_speaker_emb(filename,speaker_model)
 
                     emb_name=os.path.splitext(filename)[0]
                     emb_name+="."+args.model_name+"_embedding"

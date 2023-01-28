@@ -1,12 +1,12 @@
-from model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
-from model.wavlm_speaker_encoder import WavLMSpeakerEncoder
+from modules.model.ecapatdnn_speaker_encoder import EcapaTDNNSpeakerEncoder
+from modules.model.wavlm_speaker_encoder import WavLMSpeakerEncoder
 import os
 import audioTools
 import torch
 from tqdm import tqdm
 import numpy as np
 import argparse
-from train import get_model
+from modules.train import get_model
 
 def get_pairs_list(pairs_list_path,data_root_path):
     data=[]

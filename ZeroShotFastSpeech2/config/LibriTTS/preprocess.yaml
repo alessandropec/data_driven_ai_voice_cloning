@@ -2,11 +2,11 @@ dataset: "LibriTTS"
 speaker_emb: True
 speaker_emb_extension: "ecapa_embedding"
 path:
-  corpus_path: "ZeroShotFastSpeech2/datasets/LibriTTS"
+  corpus_path: "datasets/LibriTTS"
   lexicon_path: "lexicon/librispeech-lexicon.txt"
-  raw_path: "ZeroShotFastSpeech2/raw_data/LibriTTS"
-  preprocessed_path: "ZeroShotFastSpeech2/preprocessed_data/LibriTTS"
-  speaker_emb_path: "ZeroShotFastSpeech2/datasets/LibriTTS"
+  raw_path: "raw_data/LibriTTS"
+  preprocessed_path: "preprocessed_data/LibriTTS"
+  speaker_emb_path: "datasets/LibriTTS"
 
 
 preprocessing:
