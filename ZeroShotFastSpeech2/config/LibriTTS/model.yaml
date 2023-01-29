@@ -1,6 +1,7 @@
 speaker_emb_dim: 192
-speaker_adding_strategy: "concat"
-speaker_projector_dim: 64
+speaker_adding_strategy: "sum" #concat or sum
+speaker_adding_location: "post_variance_adaptor" #pre_variance_adaptor or post_variance_adaptor
+speaker_projector_dim: 64 #if strategy is sum speaker projector dim is equal to decoder dim
 transformer:
   encoder_layer: 4
   encoder_head: 2

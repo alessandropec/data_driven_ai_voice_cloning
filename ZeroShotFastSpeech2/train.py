@@ -50,12 +50,20 @@ def main(args, configs):
     # Init logger
     for p in train_config["path"].values():
         os.makedirs(p, exist_ok=True)
+    config_path=os.path.join(train_config["path"]["configs_path"])
     train_log_path = os.path.join(train_config["path"]["log_path"], "train")
     val_log_path = os.path.join(train_config["path"]["log_path"], "val")
+    os.makedirs(config_path,exist_ok=True)
     os.makedirs(train_log_path, exist_ok=True)
     os.makedirs(val_log_path, exist_ok=True)
     train_logger = SummaryWriter(train_log_path)
     val_logger = SummaryWriter(val_log_path)
+
+
+    config_path=[os.path.join(config_path,c) for c in ["preprocess.yaml","model.yaml","train.yaml"]]
+    for p,c in zip(config_path,configs):
+        with open(p, 'w') as file:
+            yaml.dump(c,file)
 
     # Training
     step = args.restore_step + 1

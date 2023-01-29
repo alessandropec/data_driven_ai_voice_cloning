@@ -9,6 +9,26 @@ from transformer import Encoder, Decoder, PostNet
 from .modules import VarianceAdaptor
 from utils.tools import get_mask_from_lengths
 
+def speaker_adding(output,speakers,max_src_len,speaker_projector,speaker_adding_strategy):
+    if speaker_projector:
+        speakers=speaker_projector(speakers)
+
+   
+    if speaker_adding_strategy=="concat":
+        speakers_embedding=speakers.unsqueeze(1).repeat(1,output.size(1),1)
+
+        output = torch.cat(
+                (output, speakers_embedding), dim=2)
+    elif speaker_adding_strategy=="sum":
+          
+            prepare_speakers=speakers.unsqueeze(1).expand(
+        -1, max_src_len, -1)
+            output = output + prepare_speakers
+    
+
+    return output
+
+
 
 class FastSpeech2(nn.Module):
     """ FastSpeech2 """
@@ -22,6 +42,7 @@ class FastSpeech2(nn.Module):
 
         if self.use_speaker_emb:
             self.speaker_adding_strategy=model_config["speaker_adding_strategy"]
+            self.speaker_adding_location=model_config["speaker_adding_location"]
 
         if model_config["multi_speaker"] and not self.use_speaker_emb:
             with open(
@@ -103,6 +124,9 @@ class FastSpeech2(nn.Module):
                 -1, max_src_len, -1
             )
 
+        if self.use_speaker_emb and self.speaker_adding_location=="pre_variance_adaptor":
+            output=speaker_adding(output,speakers,max_src_len,self.speaker_projector,self.speaker_adding_strategy)
+
         (
             output,
             p_predictions,
@@ -124,19 +148,9 @@ class FastSpeech2(nn.Module):
             d_control,
         )
         ##################Speaker adding############
-        if self.use_speaker_emb:
-            if self.speaker_projector:
-                speakers=self.speaker_projector(speakers)
-
-            if self.speaker_adding_strategy=="concat":
-                speakers_embedding=speakers.unsqueeze(1).repeat(1,output.size(1),1)
-
-                output = torch.cat(
-                        (output, speakers_embedding), dim=2)
-            elif self.speaker_adding_strategy=="sum":
-                    output = output + self.speakers.unsqueeze(1).expand(
-                -1, max_src_len, -1
-            )
+        if self.use_speaker_emb and self.speaker_adding_location=="post_variance_adaptor":
+            output=speaker_adding(output,speakers,output.size(1),self.speaker_projector,self.speaker_adding_strategy)
+           
 
 
         output, mel_masks = self.decoder(output, mel_masks)
