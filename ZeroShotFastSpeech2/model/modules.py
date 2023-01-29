@@ -17,12 +17,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 class VarianceAdaptor(nn.Module):
     """Variance Adaptor"""
 
-    def __init__(self, preprocess_config, model_config):
+    def __init__(self, preprocess_config, model_config,enlarge_variance_dim=0):
         super(VarianceAdaptor, self).__init__()
-        self.duration_predictor = VariancePredictor(model_config)
+        self.duration_predictor = VariancePredictor(model_config,enlarge_variance_dim)
         self.length_regulator = LengthRegulator()
-        self.pitch_predictor = VariancePredictor(model_config)
-        self.energy_predictor = VariancePredictor(model_config)
+        self.pitch_predictor = VariancePredictor(model_config,enlarge_variance_dim)
+        self.energy_predictor = VariancePredictor(model_config,enlarge_variance_dim)
 
         self.pitch_feature_level = preprocess_config["preprocessing"]["pitch"][
             "feature"
@@ -71,10 +71,10 @@ class VarianceAdaptor(nn.Module):
             )
 
         self.pitch_embedding = nn.Embedding(
-            n_bins, model_config["transformer"]["encoder_hidden"]
+            n_bins, model_config["transformer"]["encoder_hidden"]+enlarge_variance_dim
         )
         self.energy_embedding = nn.Embedding(
-            n_bins, model_config["transformer"]["encoder_hidden"]
+            n_bins, model_config["transformer"]["encoder_hidden"]+enlarge_variance_dim
         )
 
     def get_pitch_embedding(self, x, target, mask, control):
@@ -197,10 +197,12 @@ class LengthRegulator(nn.Module):
 class VariancePredictor(nn.Module):
     """Duration, Pitch and Energy Predictor"""
 
-    def __init__(self, model_config):
+    def __init__(self, model_config,enlarged_dim=None):
         super(VariancePredictor, self).__init__()
 
-        self.input_size = model_config["transformer"]["encoder_hidden"]
+       
+        self.input_size = model_config["transformer"]["encoder_hidden"]+enlarged_dim
+    
         self.filter_size = model_config["variance_predictor"]["filter_size"]
         self.kernel = model_config["variance_predictor"]["kernel_size"]
         self.conv_output_size = model_config["variance_predictor"]["filter_size"]

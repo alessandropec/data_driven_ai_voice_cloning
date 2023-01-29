@@ -15,8 +15,9 @@ def speaker_adding(output,speakers,max_src_len,speaker_projector,speaker_adding_
 
    
     if speaker_adding_strategy=="concat":
-        speakers_embedding=speakers.unsqueeze(1).repeat(1,output.size(1),1)
 
+        speakers_embedding=speakers.unsqueeze(1).repeat(1,output.size(1),1)
+   
         output = torch.cat(
                 (output, speakers_embedding), dim=2)
     elif speaker_adding_strategy=="sum":
@@ -40,10 +41,12 @@ class FastSpeech2(nn.Module):
         
         self.use_speaker_emb=preprocess_config["speaker_emb"]
 
+        self.speaker_projector=None
         if self.use_speaker_emb:
             self.speaker_adding_strategy=model_config["speaker_adding_strategy"]
             self.speaker_adding_location=model_config["speaker_adding_location"]
 
+        enlarged_dim=None
         if model_config["multi_speaker"] and not self.use_speaker_emb:
             with open(
                 os.path.join(
@@ -76,15 +79,23 @@ class FastSpeech2(nn.Module):
                 self.speaker_projector=torch.nn.Linear(model_config["speaker_emb_dim"],
                                                     model_config["speaker_projector_dim"])
 
+            #if model_config["speaker_adding_location"]!="pre_variance_adaptor":
             model_config["transformer"]["decoder_hidden"]=enlarged_dim
             print("Decoder dimension:", model_config["transformer"]["decoder_hidden"])
 
-        self.model_config = model_config
+        self.model_config = dict(model_config)
 
-
-        self.encoder = Encoder(model_config)
-        self.variance_adaptor = VarianceAdaptor(preprocess_config, model_config)
-        self.decoder = Decoder(model_config)
+        enlarge_variance_dim=0
+        if model_config["speaker_adding_location"]=="pre_variance_adaptor" and model_config["speaker_adding_strategy"]=="concat":
+            if model_config["speaker_projector_dim"]>0:
+                enlarge_variance_dim=model_config["speaker_projector_dim"]
+            else:
+                enlarge_variance_dim=model_config["speaker_emb_dim"]
+        print("Enlarge variance adaptor dim of:", enlarge_variance_dim)
+        
+        self.encoder = Encoder(self.model_config)
+        self.variance_adaptor = VarianceAdaptor(preprocess_config, self.model_config,enlarge_variance_dim)
+        self.decoder = Decoder(self.model_config)
         self.mel_linear = nn.Linear(
             model_config["transformer"]["decoder_hidden"],
             preprocess_config["preprocessing"]["mel"]["n_mel_channels"],

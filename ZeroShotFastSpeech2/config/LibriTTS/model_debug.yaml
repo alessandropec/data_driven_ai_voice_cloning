@@ -1,6 +1,6 @@
 speaker_emb_dim: 192
 speaker_adding_strategy: "concat" #concat or sum
-speaker_adding_location: "post_variance_adaptor" #pre_variance_adaptor or post_variance_adaptor
+speaker_adding_location: "pre_variance_adaptor" #pre_variance_adaptor or post_variance_adaptor
 speaker_projector_dim: 64 #if strategy is sum speaker projector dim is equal to decoder dim, this parameter is ignored
 transformer:
   encoder_layer: 4
@@ -37,6 +37,6 @@ multi_speaker: True
 max_seq_len: 1000
 
 vocoder:
-  config_path: "hifigan/config.json"
+  config_path: "ZeroShotFastSpeech2/hifigan/config.json"
   model: "HiFi-GAN" # support 'HiFi-GAN', 'MelGAN'
   speaker: "universal" # support  'LJSpeech', 'universal'
