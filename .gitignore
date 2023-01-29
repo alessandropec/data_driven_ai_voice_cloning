@@ -10,3 +10,4 @@ ZeroShotFastSpeech2/hifigan/generator_universal.pth.tar
 voicy_debug.py
 .vscode/*
 wavs_example/*
+speaker_embeddings/*

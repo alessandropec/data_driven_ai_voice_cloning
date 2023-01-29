@@ -62,7 +62,7 @@ class FastSpeech2(nn.Module):
 
         elif model_config["multi_speaker"] and self.use_speaker_emb: #Change input encoder dim, another way is use a linear layer
             if model_config["speaker_adding_strategy"]=="concat":
-                enlarged_dim=model_config["transformer"]["decoder_hidden"]
+                enlarged_dim=model_config["transformer"]["encoder_hidden"]
             
                 if model_config["speaker_projector_dim"]>0:
                     self.speaker_projector=torch.nn.Linear(model_config["speaker_emb_dim"],
@@ -74,7 +74,7 @@ class FastSpeech2(nn.Module):
             #Set to projection to match the decoder dim
             elif model_config["speaker_adding_strategy"]=="sum":
                 print("Speaker adding strategy, sum, using speaker projector!")
-                enlarged_dim= model_config["transformer"]["decoder_hidden"]
+                enlarged_dim= model_config["transformer"]["encoder_hidden"]
                 model_config["speaker_projector_dim"]=enlarged_dim
                 self.speaker_projector=torch.nn.Linear(model_config["speaker_emb_dim"],
                                                     model_config["speaker_projector_dim"])
