@@ -1,8 +1,8 @@
 path:
-  ckpt_path: "output_sum_post/ckpt/LibriTTS"
-  log_path: "output_sum_post/log/LibriTTS"
-  result_path: "output_sum_post/result/LibriTTS"
-  configs_path: "output_sum_post/configs/LibriTTS"
+  ckpt_path: "output/ckpt/LibriTTS"
+  log_path: "output/log/LibriTTS"
+  result_path: "output/result/LibriTTS"
+  configs_path: "output/configs/LibriTTS"
 
 optimizer:
   batch_size: 2

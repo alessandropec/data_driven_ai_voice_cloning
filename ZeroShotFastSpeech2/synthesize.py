@@ -92,6 +92,7 @@ def synthesize(model, step, configs, vocoder, batchs, control_values):
         batch = to_device(batch, device,speaker_emb=preprocess_config["speaker_emb"])
         with torch.no_grad():
             # Forward
+
             output = model(
                 *(batch[2:]),
                 p_control=pitch_control,
