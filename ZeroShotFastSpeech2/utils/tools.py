@@ -58,8 +58,8 @@ def to_device(data, device,speaker_emb=False):
 
     if len(data) == 6:
         (ids, raw_texts, speakers, texts, src_lens, max_src_len) = data
-
-        speakers = torch.from_numpy(speakers).long().to(device)
+        if not speaker_emb:
+            speakers = torch.from_numpy(speakers).long().to(device)
         texts = torch.from_numpy(texts).long().to(device)
         src_lens = torch.from_numpy(src_lens).to(device)
 

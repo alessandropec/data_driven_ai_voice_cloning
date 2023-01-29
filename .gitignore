@@ -7,3 +7,4 @@ ZeroShotFastSpeech2/output/*
 __pycache__/*
 pretrained_models/*
 ZeroShotFastSpeech2/hifigan/generator_universal.pth.tar
+voicy_debug.py
