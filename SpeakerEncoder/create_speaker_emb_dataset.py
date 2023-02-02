@@ -7,6 +7,14 @@ import os
 import glob
 from train import get_model_architecture
 
+import torchaudio
+import torchaudio.functional as F
+import torchaudio.transforms as T
+
+
+
+
+
 def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
         
         
@@ -25,18 +33,15 @@ def get_speaker_model(model_name="ecapa",device="cpu",ckpt_path=None):
             return model
         
 def get_speaker_emb(filename,speaker_model,start_threshold=0.001,end_threshold=0.001):
-    audio,sampling_rate=load_wav_to_torch(filename)
-    audio_norm=normalize(audio)
+    audio,sampling_rate,c,subtype=load_wav_to_torch(filename,add_info=True)
+    audio_norm=normalize(audio,subtype)
     audio_trim = trim_silence(audio_norm,start_threshold=start_threshold,end_threshold=end_threshold)
+    if sampling_rate!=16000:
+        resampler = T.Resample(sampling_rate, 16000, dtype=audio_trim.dtype)
+        audio_trim_resampled = resampler(audio_trim)
 
-    if sampling_rate!=48000 and sampling_rate!=16000:
-    
-    
-    
-        sp_audio,sp_sr=torch.tensor(librosa.resample(audio_trim.numpy(),sampling_rate,16000)),16000
-    else:
-        sp_audio,sp_sr=audio_trim,48000
-    emb=speaker_model(sp_audio.unsqueeze(0))
+        
+    emb=speaker_model(audio_trim_resampled.unsqueeze(0))
 
     return emb
 

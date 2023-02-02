@@ -16,11 +16,35 @@ import torch
 import glob
 import os
 
+import soundfile as sf
 
-def normalize(audio):
+NORMALIZATION_DICT={
+    "PCM_32":{"min":-2147483648,  "max":+2147483647},
+    "PCM_24":{"min":-2147483648,  "max":+2147483392},
+    "PCM_16":{"min":-32768,       "max":+32767},
+    "PCM_8":{"min":0,       "max":255},
+}
+'''
+=====================  ===========  ===========  =============
+         WAV format            Min          Max       NumPy dtype
+    =====================  ===========  ===========  =============
+    32-bit floating-point  -1.0         +1.0         float32
+    32-bit integer PCM     -2147483648  +2147483647  int32
+    24-bit integer PCM     -2147483648  +2147483392  int32
+    16-bit integer PCM     -32768       +32767       int16
+    8-bit integer PCM      0            255          uint8
+    =====================  ===========  ===========  =============
+'''
+
+def normalize(audio,subtype):
     
-    max_abs=torch.max(torch.max(audio),torch.abs(torch.min(audio)))
+    max_abs=max([abs(v) for v in NORMALIZATION_DICT[subtype].values()])
     audio= audio/max_abs
+    return audio
+
+def denormalize(audio,subtype):
+    max_abs=max([abs(v) for v in NORMALIZATION_DICT[subtype].values()])
+    audio= audio*max_abs
     return audio
 
 def trim_silence(audio,start_threshold=0.00001,end_threshold=0.00001):
@@ -51,8 +75,11 @@ def add_silence(audio,sr,duration_in_seconds=0.02,end=True,start=False):
 
     return audio
 
-def load_wav_to_torch(full_path):
+def load_wav_to_torch(full_path,add_info=False):
     sampling_rate, data = read(full_path)
+    if add_info:
+        ob = sf.SoundFile(full_path)
+        return torch.FloatTensor(data.astype(np.float32)), sampling_rate,ob.channels,ob.subtype
     return torch.FloatTensor(data.astype(np.float32)), sampling_rate
 
 def load_vctk(root_path,wav_folder="wav",text_folder="txt"):
