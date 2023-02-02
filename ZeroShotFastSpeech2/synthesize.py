@@ -84,9 +84,12 @@ def preprocess_mandarin(text, preprocess_config):
     return np.array(sequence)
 
 
-def synthesize(model, step, configs, vocoder, batchs, control_values):
+def synthesize(model, step, configs, vocoder, batchs, control_values,result_path=None,basenames=None):
     preprocess_config, model_config, train_config = configs
     pitch_control, energy_control, duration_control = control_values
+
+    if result_path==None:
+        result_path=train_config["path"]["result_path"]
 
     for batch in batchs:
         batch = to_device(batch, device,speaker_emb=preprocess_config["speaker_emb"])
@@ -105,8 +108,10 @@ def synthesize(model, step, configs, vocoder, batchs, control_values):
                 vocoder,
                 model_config,
                 preprocess_config,
-                train_config["path"]["result_path"],
+                result_path,
+                basenames
             )
+ 
 
 
 if __name__ == "__main__":

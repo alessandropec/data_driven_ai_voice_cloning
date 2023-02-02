@@ -11,3 +11,7 @@ voicy_debug.py
 .vscode/*
 wavs_example/*
 speaker_embeddings/*
+ZeroShotFastSpeech2/output_prcs/*
+ZeroShotFastSpeech2/output_prss/*
+ZeroShotFastSpeech2/output_prss_large/*
+ZeroShotFastSpeech2/output_prcs_large/*
