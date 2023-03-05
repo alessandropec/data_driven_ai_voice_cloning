@@ -9,7 +9,7 @@ It is divided in two part:
 
 2. Text-to-speech 
 >1. model: FastSpeech2 (microsoft implementation)
->2. data: VCTK, LibriTTS
+>2. data: LibriTTS
 
 This two part are then integrated to achieve a Multi Speaker Text to Speech model that is capable of cloning unseen voices starting from about 5 seconds of audio, the ZeroShotFastSpeech2 model.
 
